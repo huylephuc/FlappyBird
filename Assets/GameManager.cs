@@ -16,8 +16,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mainMenu.SetActive(false);
-            startScreen.SetActive(true);
+            ChangeScene();
         }
+    }
+
+    void ChangeScene()
+    {
+        mainMenu.SetActive(false);
+        startScreen.SetActive(true);
     }
 }
