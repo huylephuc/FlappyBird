@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject startScreen;
     void Start()
     {
-        
+        mainMenu.SetActive(true);
+        startScreen.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            mainMenu.SetActive(false);
+            startScreen.SetActive(true);
+        }
     }
 }
