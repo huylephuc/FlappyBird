@@ -8,11 +8,11 @@ public class Pipe : MonoBehaviour
 
     void Start()
     {
-
+        Destroy(gameObject, 5f);
     }
 
     void Update()
     {
-        transform.position -= new Vector3(speed, 0); 
+        transform.position -= new Vector3(speed, 0);
     }
 }
