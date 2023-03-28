@@ -6,15 +6,18 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject startScreen;
+    [SerializeField] private GameObject pipePrefab;
+
     void Start()
     {
-        mainMenu.SetActive(true);
+        mainMenu.SetActive(false);
         startScreen.SetActive(false);
+        InvokeRepeating("SpawnPipe", 2f, 2f);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             ChangeScene();
         }
@@ -24,5 +27,10 @@ public class GameManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         startScreen.SetActive(true);
+    }
+
+    void SpawnPipe()
+    {
+        Instantiate(pipePrefab, pipePrefab.transform.position, Quaternion.identity);
     }
 }
