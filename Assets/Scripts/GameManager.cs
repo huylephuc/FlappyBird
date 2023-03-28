@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnPipe()
     {
-        Instantiate(pipePrefab, pipePrefab.transform.position, Quaternion.identity);
+        var position = new Vector3(pipePrefab.transform.position.x, Random.Range(-40f, 80f), 0);
+        Instantiate(pipePrefab, position, Quaternion.identity);
     }
 }

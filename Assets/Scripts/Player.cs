@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float jumpAmount = 150f;
+    private float jumpAmount = 100f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
     void Start()
