@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -36,5 +35,10 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("hit");
     }
 }
