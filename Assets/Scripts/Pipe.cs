@@ -10,4 +10,9 @@ public class Pipe : MonoBehaviour
     {
         transform.position -= new Vector3(speed, 0);
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        gameObject.SetActive(false);
+    }
 }

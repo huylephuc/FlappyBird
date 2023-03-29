@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         getReady.SetActive(false);
         Player.PlayerGrav = 150;
-        InvokeRepeating("SpawnPipe", 2f, 2f);
+        StartCoroutine(Spawn());
     }
     void SpawnPipe()
     {
@@ -33,5 +33,14 @@ public class GameManager : MonoBehaviour
         pipe.transform.position = position;
         pipe.transform.rotation = Quaternion.identity;
         pipe.SetActive(true);
+    }
+
+    IEnumerator Spawn()
+    {
+        while (true)
+        {
+            SpawnPipe();
+            yield return new WaitForSeconds(2);
+        }
     }
 }
