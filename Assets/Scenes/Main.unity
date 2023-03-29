@@ -592,9 +592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca88c2178536fa4d9d47d4281cdbb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 1906424463}
-  startScreen: {fileID: 1890038813}
   pipePrefab: {fileID: 5427796088051437477, guid: 9659a09c6b1cfc842b446eef0be20425, type: 3}
+  tutorial: {fileID: 0}
 --- !u!1 &1020005237
 GameObject:
   m_ObjectHideFlags: 0

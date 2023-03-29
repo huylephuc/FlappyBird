@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private float speed = 0.25f;
-
-    void Start()
-    {
-        Destroy(gameObject, 5f);
-    }
+    private float speed = 2.5f;
 
     void Update()
     {

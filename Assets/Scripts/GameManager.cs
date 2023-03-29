@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject pipePrefab;
+    [SerializeField] private GameObject getReady;
 
-    void Start()
+    /*void Start()
     {
-        mainMenu.SetActive(false);
-        startScreen.SetActive(false);
         InvokeRepeating("SpawnPipe", 2f, 2f);
-    }
+    }*/
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetMouseButtonDown(0))
         {
-            ChangeScene();
+            StartGame();
         }
     }
 
-    void ChangeScene()
+    void StartGame()
     {
-        mainMenu.SetActive(false);
-        startScreen.SetActive(true);
+        getReady.SetActive(false);
+        Player.PlayerGrav = 150;
+        InvokeRepeating("SpawnPipe", 2f, 2f);
     }
-
     void SpawnPipe()
     {
-        var position = new Vector3(pipePrefab.transform.position.x, Random.Range(-40f, 80f), 0);
-        Instantiate(pipePrefab, position, Quaternion.identity);
+        var position = new Vector3(pipePrefab.transform.position.x, Random.Range(-230, 600), 0);
+        GameObject pipe = ObjectPool.instance.GetPooledObject();
+        pipe.transform.position = position;
+        pipe.transform.rotation = Quaternion.identity;
+        pipe.SetActive(true);
     }
 }

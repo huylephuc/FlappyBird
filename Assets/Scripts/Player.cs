@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float jumpAmount = 100f;
+    public static float PlayerGrav; 
+    private float jumpAmount = 600f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0; 
+        rb.velocity = Vector3.zero;
     }
 
     void Update()
@@ -28,12 +32,16 @@ public class Player : MonoBehaviour
 
     void CheckRot()
     {
-        if (rb.velocity.y <= 0)
+        rb.gravityScale = PlayerGrav;
+        if (rb.velocity.y < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -rotZ);
-        } else
+        } else if (rb.velocity.y > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        } else
+        {
+            transform.rotation = Quaternion.identity;
         }
     }
 
