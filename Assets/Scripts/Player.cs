@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public static float PlayerGrav;
     public static int Score;
+    public GameManager gameManager;
+
     private float jumpAmount = 130f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
@@ -50,13 +52,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Hitbox"))
-        {
-            Score++;
-        }
         if (collider.CompareTag("Pipe"))
         {
-            Debug.Log("hit");
+            gameManager.GameOver();
+        }
+    }
+    private void OnTriggerExit2D (Collider2D other)
+    {
+        if (other.CompareTag("Hitbox"))
+        {
+            Score++;
         }
     }
 }
