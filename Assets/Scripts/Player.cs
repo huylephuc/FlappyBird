@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static float PlayerGrav; 
-    private float jumpAmount = 600f;
+    public static float PlayerGrav;
+    public static int Score;
+    private float jumpAmount = 130f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; 
         rb.velocity = Vector3.zero;
+        Score = 0;
     }
 
     void Update()
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         if (rb.velocity.y < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -rotZ);
+            PlayerGrav++;
         } else if (rb.velocity.y > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
@@ -47,6 +50,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("hit");
+        if (collider.CompareTag("Hitbox"))
+        {
+            Score++;
+        }
+        if (collider.CompareTag("Pipe"))
+        {
+            Debug.Log("hit");
+        }
     }
 }

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private float speed = 2.5f;
+    private float speed = 0.25f;
 
     void Update()
     {
         transform.position -= new Vector3(speed, 0);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        gameObject.SetActive(false);
+        if (collider.CompareTag("Wall"))
+            gameObject.SetActive(false);
     }
 }
