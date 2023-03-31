@@ -6,18 +6,24 @@ public class Player : MonoBehaviour
 {
     public static float PlayerGrav;
     public static int Score;
+    public static bool IsAlive;
     public GameManager gameManager;
 
     private float jumpAmount = 130f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
 
-    void Start()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0; 
+        rb.gravityScale = 0;
+        Debug.Log(rb.gravityScale);
+    }
+    void Start()
+    {
         rb.velocity = Vector3.zero;
         Score = 0;
+        IsAlive = true;
     }
 
     void Update()
@@ -44,17 +50,14 @@ public class Player : MonoBehaviour
         } else if (rb.velocity.y > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        } else
-        {
-            transform.rotation = Quaternion.identity;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Pipe"))
+        if (collider.CompareTag("Pipe") || collider.CompareTag("Ground"))
         {
-            gameManager.GameOver();
+            IsAlive = false;
         }
     }
     private void OnTriggerExit2D (Collider2D other)
