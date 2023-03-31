@@ -15,12 +15,11 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
-        Debug.Log(rb.gravityScale);
     }
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
         rb.velocity = Vector3.zero;
         Score = 0;
         IsAlive = true;

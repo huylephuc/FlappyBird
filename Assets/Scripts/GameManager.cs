@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreBoardText;
     [SerializeField] private Text highScoreText;
     [SerializeField] private SpriteRenderer newHS;
-    [SerializeField]private SpriteRenderer copper;
+    [SerializeField] private SpriteRenderer copper;
     [SerializeField] private SpriteRenderer silver;
     [SerializeField] private SpriteRenderer gold;
+
+    private bool isStarted = false;
+    private bool spawned = false;
+
 
     private void OnEnable()
     {
@@ -24,12 +28,21 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        InvokeRepeating("SpawnPipe", 2f, 1.75f);
+        getReady.SetActive(true);
         score.enabled = false;
         highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
     void Update()
     {
+        if (!isStarted)
+        {
+            Player.PlayerGrav = 0;
+        }
+        if (isStarted && !spawned)
+        {
+            spawned = true;
+            InvokeRepeating("SpawnPipe", 2f, 2f);
+        }
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             StartGame();
@@ -43,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        isStarted = true;
         getReady.SetActive(false);
         Player.PlayerGrav = 35;
         score.enabled = true;
@@ -58,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isStarted = false;
         Time.timeScale = 0;
         scoreBoard.gameObject.SetActive(true);
         score.enabled = false;
@@ -82,7 +97,5 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene(0);
-
-
     }
 }
