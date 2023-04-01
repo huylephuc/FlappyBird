@@ -8,18 +8,24 @@ public class Player : MonoBehaviour
     public static int Score;
     public static bool IsAlive;
 
+    [SerializeField] private AudioClip flySFX;
+    [SerializeField] private AudioClip pointSFX;
+    [SerializeField] private AudioClip deathSFX;
+
+    private AudioSource audioSource;
     private float jumpAmount = 130f;
     private float rotZ = 30f;
     private Rigidbody2D rb;
 
-    private void OnEnable()
-    {
-    }
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.velocity = Vector3.zero;
+    }
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
         Score = 0;
         IsAlive = true;
     }
@@ -27,15 +33,19 @@ public class Player : MonoBehaviour
     void Update()
     {
         CheckRot();
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
+        if (IsAlive)
         {
-            Jump();
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
+            {
+                Jump();
+            }
         }
     }
 
     void Jump()
     {
         rb.velocity = Vector2.up * jumpAmount;
+        audioSource.PlayOneShot(flySFX, 1);
     }
 
     void CheckRot()
@@ -56,6 +66,7 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("Pipe") || collider.CompareTag("Ground"))
         {
             IsAlive = false;
+            audioSource.PlayOneShot(deathSFX, 1);
         }
     }
     private void OnTriggerExit2D (Collider2D other)
@@ -63,6 +74,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Hitbox"))
         {
             Score++;
+            audioSource.PlayOneShot(pointSFX, 1);
         }
     }
 }

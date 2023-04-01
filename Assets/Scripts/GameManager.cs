@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         if (isStarted && !spawned)
         {
             spawned = true;
-            InvokeRepeating("SpawnPipe", 2f, 2f);
+            InvokeRepeating("SpawnPipe", 2f, 1f);
         }
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         score.text = Player.Score.ToString();
         if (!Player.IsAlive)
         {
-            
             GameOver();
         }
     }

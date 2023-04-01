@@ -981,6 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipePrefab: {fileID: 1099227940765699096, guid: 9659a09c6b1cfc842b446eef0be20425, type: 3}
   getReady: {fileID: 1890038813}
+  audioListener: {fileID: 519420029}
   scoreBoard: {fileID: 38651032}
   score: {fileID: 1761107319}
   scoreBoardText: {fileID: 1073762205}
@@ -989,8 +990,6 @@ MonoBehaviour:
   copper: {fileID: 1922262177}
   silver: {fileID: 1143836669}
   gold: {fileID: 417683301}
-  deathSFX: {fileID: 8300000, guid: 8b6686f47bdaa9a4a82cd0cbc4d2df9d, type: 3}
-  pointSFX: {fileID: 8300000, guid: fc98f0c433b095340b5a2980f9a1f7ca, type: 3}
 --- !u!1 &884003563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2389,12 +2388,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
+      propertyPath: flySFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 229fec85b5c825149b31053c9d5812d9, type: 3}
+    - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
+      propertyPath: deathFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a0fa8876b30029f439aa06be0e483605, type: 3}
+    - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a0fa8876b30029f439aa06be0e483605, type: 3}
+    - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
+      propertyPath: pointSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: fc98f0c433b095340b5a2980f9a1f7ca, type: 3}
+    - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 656321119}
     - target: {fileID: 5459256715232065300, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
       propertyPath: m_GravityScale
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459256715232065301, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
+      propertyPath: m_Radius
+      value: 0.115
       objectReference: {fileID: 0}
     - target: {fileID: 5459256715232065301, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
       propertyPath: m_IsTrigger
