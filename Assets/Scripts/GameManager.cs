@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject pipePrefab;
     [SerializeField] private GameObject getReady;
+
     [Header("Scoreboard")]
-    [SerializeField] private Text score;
     [SerializeField] private Canvas scoreBoard;
+    [SerializeField] private Text score;
     [SerializeField] private Text scoreBoardText;
     [SerializeField] private Text highScoreText;
     [SerializeField] private SpriteRenderer newHS;
@@ -20,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     private bool isStarted = false;
     private bool spawned = false;
-
 
     private void OnEnable()
     {
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         score.text = Player.Score.ToString();
         if (!Player.IsAlive)
         {
+            
             GameOver();
         }
     }

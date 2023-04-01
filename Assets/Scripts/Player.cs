@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public static float PlayerGrav;
     public static int Score;
     public static bool IsAlive;
-    public GameManager gameManager;
 
     private float jumpAmount = 130f;
     private float rotZ = 30f;
