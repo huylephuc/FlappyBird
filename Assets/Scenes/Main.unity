@@ -981,7 +981,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipePrefab: {fileID: 1099227940765699096, guid: 9659a09c6b1cfc842b446eef0be20425, type: 3}
   getReady: {fileID: 1890038813}
-  audioListener: {fileID: 519420029}
   scoreBoard: {fileID: 38651032}
   score: {fileID: 1761107319}
   scoreBoardText: {fileID: 1073762205}
