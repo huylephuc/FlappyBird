@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         if (isStarted && !spawned)
         {
             spawned = true;
-            InvokeRepeating("SpawnPipe", 2f, 1f);
+            InvokeRepeating("SpawnPipe", 2f, 1.5f);
         }
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
