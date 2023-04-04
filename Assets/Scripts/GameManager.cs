@@ -96,6 +96,6 @@ public class GameManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
