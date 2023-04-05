@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        //Application.targetFrameRate = 60;
         getReady.SetActive(true);
         score.enabled = false;
         highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
     }
     void SpawnPipe()
     {
-        Vector3 position = new Vector3(pipePrefab.transform.position.x, Random.Range(-35, 90), 0);
+        Vector3 position = new Vector3(pipePrefab.transform.position.x, Random.Range(-25, 80), 0);
         GameObject pipe = ObjectPool.instance.GetPooledObject();
         pipe.transform.position = position;
         pipe.transform.rotation = Quaternion.identity;

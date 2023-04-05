@@ -8,13 +8,16 @@ public class Player : MonoBehaviour
     public static int Score;
     public static bool IsAlive;
 
+    private static int MAX_ANGLE = 30;
+    private static int MIN_ANGLE = -90;
+
     [SerializeField] private AudioClip flySFX;
     [SerializeField] private AudioClip pointSFX;
     [SerializeField] private AudioClip deathSFX;
 
     private AudioSource audioSource;
     private float jumpAmount = 130f;
-    private float rotZ = 30f;
+    private float rotZ;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -32,7 +35,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        CheckRot();
         if (IsAlive)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
                 Jump();
             }
         }
+        CheckRot();
     }
 
     void Jump()
@@ -51,14 +54,21 @@ public class Player : MonoBehaviour
     void CheckRot()
     {
         rb.gravityScale = PlayerGrav;
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, -rotZ);
-            PlayerGrav++;
-        } else if (rb.velocity.y > 0)
+            if (rotZ < MAX_ANGLE)
+            {
+                rotZ += 15;
+            }
+        } else if (rb.velocity.y < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, rotZ);
+            if (rotZ > MIN_ANGLE) 
+            {
+                rotZ --;
+            }
         }
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
