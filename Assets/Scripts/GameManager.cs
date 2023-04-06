@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (isStarted && !spawned)
         {
             spawned = true;
-            InvokeRepeating("SpawnPipe", 2f, 1.5f);
+            InvokeRepeating("SpawnPipe", 2f, 1f);
         }
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
@@ -75,23 +75,16 @@ public class GameManager : MonoBehaviour
     {
         isStarted = false;
         Time.timeScale = 0;
+        Player.PlayerGrav = -10000;
         scoreBoard.gameObject.SetActive(true);
         score.enabled = false;
         scoreBoardText.text = Player.Score.ToString();
-        if (Player.Score < PlayerPrefs.GetInt("HighScore", 0) / 2)
-        {
-            copper.enabled = true;
-        }
-        if (Player.Score >= PlayerPrefs.GetInt("HighScore", 0) / 2 || Player.Score == PlayerPrefs.GetInt("HighScore", 0))
-        {
-            silver.enabled = true;
-        }
+        
         if (Player.Score > PlayerPrefs.GetInt("HighScore", 0))
         {
             PlayerPrefs.SetInt("HighScore", Player.Score);
             highScoreText.text = Player.Score.ToString();
             newHS.enabled = true;
-            gold.enabled = true;
         }
     }
 

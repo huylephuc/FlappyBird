@@ -73,11 +73,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Pipe") || collider.CompareTag("Ground"))
+        if (collider.CompareTag("Ground"))
         {
             IsAlive = false;
             audioSource.PlayOneShot(deathSFX, 1);
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        IsAlive = false;
+        audioSource.PlayOneShot(deathSFX, 1);
     }
     private void OnTriggerExit2D (Collider2D other)
     {
