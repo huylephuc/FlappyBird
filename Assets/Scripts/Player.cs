@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Subject
 {
     private const int MAX_ANGLE = 30;
     private const int MIN_ANGLE = -90;
 
-    private Animator _animator;
     private float jumpAmount = 130f;
     private float rotZ;
     private Rigidbody2D rb;
@@ -16,7 +15,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -65,7 +63,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameManager.instance.UpdateGameState(GameState.EndGame);
-        _animator.enabled = false;
+        GetComponent<Animator>().enabled = false;
     }
     private void OnTriggerExit2D (Collider2D other)
     {

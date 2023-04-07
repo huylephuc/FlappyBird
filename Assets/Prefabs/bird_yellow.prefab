@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 30
+  m_GravityScale: 35
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -140,9 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05fc4b5259f91444903121a7874a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySFX: {fileID: 8300000, guid: 229fec85b5c825149b31053c9d5812d9, type: 3}
-  pointSFX: {fileID: 8300000, guid: fc98f0c433b095340b5a2980f9a1f7ca, type: 3}
-  deathSFX: {fileID: 8300000, guid: a0fa8876b30029f439aa06be0e483605, type: 3}
 --- !u!82 &1307270362
 AudioSource:
   m_ObjectHideFlags: 0
@@ -252,6 +249,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009100181, y: -0.0000000010848259}
-  m_Size: {x: 0.2935007, y: 0.25000268}
+  m_Offset: {x: -0.01031158, y: 0.000000001229236}
+  m_Size: {x: 0.33051318, y: 0.25000584}
   m_Direction: 1

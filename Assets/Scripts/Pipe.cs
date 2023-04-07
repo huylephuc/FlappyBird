@@ -12,9 +12,13 @@ public class Pipe : MonoBehaviour
     {
         time = 0;
     }
+
     void Update()
     {
-        if (GameManager.instance.GameEnd) return;
+        if (GameManager.instance.GameEnd)
+        {
+            return;
+        }
         transform.position -= new Vector3(speed, 0);
         if (time >= TIME_ALIVE)
         {

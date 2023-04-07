@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour , IObserver
 {
     public static ScoreManager instance { get; private set; }
     [SerializeField] private Text scoreText;
@@ -73,5 +73,10 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt("Highscore", highScore);
             newHS.enabled = true;
         }
+    }
+
+    public void OnNotify()
+    {
+        
     }
 }
