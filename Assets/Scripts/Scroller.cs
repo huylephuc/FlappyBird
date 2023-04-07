@@ -10,6 +10,7 @@ public class Scroller : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.GameEnd) return;
         rawImage.uvRect = new Rect(rawImage.uvRect.position + new Vector2(x, 0) * Time.deltaTime, rawImage.uvRect.size);
     }
 }

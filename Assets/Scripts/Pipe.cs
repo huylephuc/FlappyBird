@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private GameManager gameManager;
-    private float speed = 0.5f;
+    private const float TIME_ALIVE = 4;
+    private float speed = 0.25f;
+    private float time;
 
-    private void Start()
+    private void OnEnable()
     {
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        time = 0;
     }
     void Update()
     {
+        if (GameManager.instance.GameEnd) return;
         transform.position -= new Vector3(speed, 0);
-        if (!Player.IsAlive)
+        if (time >= TIME_ALIVE)
         {
-            speed = 0;
+            gameObject.SetActive(false);
         }
+        time += Time.deltaTime;
     }
 
-    public void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Wall"))
-            gameObject.SetActive(false);
-    }
+    
 }

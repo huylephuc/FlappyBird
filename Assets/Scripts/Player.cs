@@ -4,43 +4,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static float PlayerGrav;
-    public static int Score;
-    public static bool IsAlive;
+    private const int MAX_ANGLE = 30;
+    private const int MIN_ANGLE = -90;
 
-    private static int MAX_ANGLE = 30;
-    private static int MIN_ANGLE = -90;
-
-    [SerializeField] private AudioClip flySFX;
-    [SerializeField] private AudioClip pointSFX;
-    [SerializeField] private AudioClip deathSFX;
-
-    private AudioSource audioSource;
+    private Animator _animator;
     private float jumpAmount = 130f;
     private float rotZ;
     private Rigidbody2D rb;
 
-    private void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        rb.velocity = Vector3.zero;
-    }
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-        Score = 0;
-        IsAlive = true;
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (IsAlive)
+        if (GameManager.instance.GameEnd) return;
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
-            {
-                Jump();
-            }
+            GameManager.instance.UpdateGameState(GameState.StartGame);
+            Jump();
+            //AudioManager.instance.PlayAudio(clip);
         }
         CheckRot();
     }
@@ -48,12 +34,11 @@ public class Player : MonoBehaviour
     void Jump()
     {
         rb.velocity = Vector2.up * jumpAmount;
-        audioSource.PlayOneShot(flySFX, 1);
+        if (rb.gravityScale == 0) rb.gravityScale = 35;
     }
 
     void CheckRot()
     {
-        rb.gravityScale = PlayerGrav;
         if (rb.velocity.y > 0)
         {
             if (rotZ < MAX_ANGLE)
@@ -68,28 +53,25 @@ public class Player : MonoBehaviour
             }
         }
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Ground"))
         {
-            IsAlive = false;
-            audioSource.PlayOneShot(deathSFX, 1);
+            GameManager.instance.UpdateGameState(GameState.EndGame);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        IsAlive = false;
-        audioSource.PlayOneShot(deathSFX, 1);
+        GameManager.instance.UpdateGameState(GameState.EndGame);
+        _animator.enabled = false;
     }
     private void OnTriggerExit2D (Collider2D other)
     {
         if (other.CompareTag("Hitbox"))
         {
-            Score++;
-            audioSource.PlayOneShot(pointSFX, 1);
+            ScoreManager.instance.AddScore();
         }
     }
 }

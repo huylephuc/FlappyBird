@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: fc98f0c433b095340b5a2980f9a1f7ca, type: 3}
     - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459256715232065299, guid: ec89c440b27effb4bab0ebb9bcbe8d99, type: 3}
       propertyPath: gameManager

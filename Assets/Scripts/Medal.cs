@@ -9,23 +9,25 @@ public class Medal : MonoBehaviour
     [SerializeField] private Sprite copper;
     [SerializeField] private Sprite silver;
     [SerializeField] private Sprite gold;
+    [SerializeField] private ScoreManager score;
 
     private void Start()
     {
         img = GetComponentInParent<Image>();
-        if (Player.Score == 0)
+        int gameScore = score.GetScore();
+        if (gameScore == 0)
         {
             img.enabled = false;
         }
-        if (Player.Score > 0 && Player.Score <= 5)
+        if (gameScore > 0 && gameScore <= 5)
         {
             img.sprite = copper;
         }
-        if (Player.Score > 5 && Player.Score <= 20)
+        if (gameScore > 5 && gameScore <= 20)
         {
             img.sprite = silver;
         }
-        if (Player.Score > 20)
+        if (gameScore > 20)
         {
             img.sprite = gold;
         }
