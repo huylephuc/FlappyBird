@@ -7,7 +7,7 @@ public class Player : Subject
     private const int MAX_ANGLE = 30;
     private const int MIN_ANGLE = -90;
 
-    private float jumpAmount = 130f;
+    private float jumpAmount = 4f;
     private float rotZ;
     private Rigidbody2D rb;
 
@@ -32,7 +32,7 @@ public class Player : Subject
     void Jump()
     {
         rb.velocity = Vector2.up * jumpAmount;
-        if (rb.gravityScale == 0) rb.gravityScale = 35;
+        if (rb.gravityScale == 0) rb.gravityScale = 1;
     }
 
     void CheckRot()
