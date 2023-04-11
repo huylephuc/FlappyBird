@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ScoreManager : MonoBehaviour , IObserver
+public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance { get; private set; }
     [SerializeField] private TMP_Text scoreText;
@@ -74,10 +74,5 @@ public class ScoreManager : MonoBehaviour , IObserver
             PlayerPrefs.SetInt("Highscore", highScore);
             newHS.enabled = true;
         }
-    }
-
-    public void OnNotify()
-    {
-        
     }
 }

@@ -19,14 +19,14 @@ public class Player : Subject
 
     void Update()
     {
+        CheckRot();
         if (GameManager.instance.GameEnd) return;
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {
             GameManager.instance.UpdateGameState(GameState.StartGame);
             Jump();
-            //AudioManager.instance.PlayAudio(clip);
+            AudioManager.instance.PlayAudio();
         }
-        CheckRot();
     }
 
     void Jump()
