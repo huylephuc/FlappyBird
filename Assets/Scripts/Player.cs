@@ -47,7 +47,7 @@ public class Player : Subject
         {
             if (rotZ > MIN_ANGLE) 
             {
-                rotZ --;
+                rotZ -= 5;
             }
         }
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
