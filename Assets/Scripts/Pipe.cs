@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private const float TIME_ALIVE = 4;
-    private float speed = 0.25f;
+    private const float TIME_ALIVE = 3;
+    private float speed = 0.05f;
     private float time;
 
     private void OnEnable()

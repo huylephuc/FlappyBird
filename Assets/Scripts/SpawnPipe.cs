@@ -22,7 +22,7 @@ public class SpawnPipe : MonoBehaviour
 
     public void Spawn()
     {
-        Vector3 position = new Vector3(pipePrefab.transform.position.x, Random.Range(-25, 80), 0);
+        Vector3 position = new Vector3(pipePrefab.transform.position.x, Random.Range(-1, 3), 0);
         GameObject pipe = ObjectPool.instance.GetPooledObject();
         pipe.transform.position = position;
         pipe.SetActive(true);

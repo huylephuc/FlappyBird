@@ -17,7 +17,7 @@ public class Player : Subject
         rb.gravityScale = 0;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (GameManager.instance.GameEnd) return;
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 

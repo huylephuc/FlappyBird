@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour , IObserver
 {
     public static ScoreManager instance { get; private set; }
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text scoreBoardText;
-    [SerializeField] private Text highScoreBoardText;
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text scoreBoardText;
+    [SerializeField] private TMP_Text highScoreBoardText;
     [SerializeField] private Canvas scoreCanvas;
     [SerializeField] private SpriteRenderer newHS;
 
