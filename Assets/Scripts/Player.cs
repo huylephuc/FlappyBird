@@ -64,6 +64,7 @@ public class Player : Subject
     {
         GameManager.instance.UpdateGameState(GameState.EndGame);
         GetComponent<Animator>().enabled = false;
+        rb.Sleep();
     }
     private void OnTriggerExit2D (Collider2D other)
     {
