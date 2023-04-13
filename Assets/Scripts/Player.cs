@@ -10,18 +10,17 @@ public class Player : Subject
     private float jumpAmount = 4f;
     private float rotZ;
     private Rigidbody2D rb;
-    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         rb.gravityScale = 0;
     }
 
     void Update()
     {
         CheckRot();
+        if (GameManager.instance.MainMenu) return;
         if (GameManager.instance.GameEnd) return;
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {

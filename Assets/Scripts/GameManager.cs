@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum GameState
 {
+    MainMenu,
     StandBy,
     StartGame,
     EndGame
@@ -13,8 +14,10 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public static event Action<GameState> OnStateChange; //declare event
 
+    private bool mainMenu;
     private bool gameStart;
     private bool gameEnd;
+    public bool MainMenu { get => mainMenu; set => mainMenu = value; }
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameEnd { get => gameEnd; set => gameEnd = value; }
 
@@ -26,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGameState(GameState.StandBy);
+        UpdateGameState(GameState.MainMenu);
     }
 
     public void UpdateGameState(GameState newState)
@@ -34,6 +37,9 @@ public class GameManager : MonoBehaviour
         state = newState;
         switch (newState)
         {
+            case GameState.MainMenu:
+                HandleMainMenu();
+                break;
             case GameState.StandBy:
                 HandleStandBy();
                 break;
@@ -48,6 +54,11 @@ public class GameManager : MonoBehaviour
         }
 
         OnStateChange?.Invoke(newState);
+    }
+
+    private void HandleMainMenu()
+    {
+        mainMenu = true;
     }
 
     private void HandleStandBy()

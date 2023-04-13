@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject endScreen;
+    private string sceneName;
     private void OnEnable()
     {
         GameManager.OnStateChange += SetMenuOnGameState; //subscribe event
@@ -15,6 +16,10 @@ public class MenuManager : MonoBehaviour
         GameManager.OnStateChange -= SetMenuOnGameState; //unsubscribe event
     }
 
+    private void Start()
+    {
+        sceneName = SceneManager.GetActiveScene().name;
+    }
     private void SetMenuOnGameState(GameState state)
     {
         startScreen.SetActive(state == GameState.StandBy);
@@ -23,6 +28,8 @@ public class MenuManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Night");
+        if (sceneName != "Night")
+            SceneManager.LoadScene("Night");
+        else SceneManager.LoadScene("Day");
     }
 }
