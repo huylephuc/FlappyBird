@@ -25,7 +25,7 @@ public class Player : Subject
         {
             GameManager.instance.UpdateGameState(GameState.StartGame);
             Jump();
-            AudioManager.instance.PlayAudio();
+            AudioManager.instance.PlayAudio(2);
         }
     }
 
@@ -55,22 +55,18 @@ public class Player : Subject
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Ground"))
+        if (collider.CompareTag("Hitbox"))
         {
-            GameManager.instance.UpdateGameState(GameState.EndGame);
+            ScoreManager.instance.AddScore();
+            AudioManager.instance.PlayAudio(1);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameManager.instance.GameEnd) return;
+        AudioManager.instance.PlayAudio(0);
         GameManager.instance.UpdateGameState(GameState.EndGame);
         GetComponent<Animator>().enabled = false;
         rb.Sleep();
-    }
-    private void OnTriggerExit2D (Collider2D other)
-    {
-        if (other.CompareTag("Hitbox"))
-        {
-            ScoreManager.instance.AddScore();
-        }
     }
 }
