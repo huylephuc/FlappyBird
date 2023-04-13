@@ -10,10 +10,12 @@ public class Player : Subject
     private float jumpAmount = 4f;
     private float rotZ;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         rb.gravityScale = 0;
     }
 

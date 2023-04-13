@@ -23,6 +23,6 @@ public class MenuManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Night");
     }
 }
