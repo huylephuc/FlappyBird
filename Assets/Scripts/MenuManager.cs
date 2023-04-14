@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Day");
+        SceneManager.LoadScene("Main");
         GameManager.instance.UpdateGameState(GameState.StandBy);
         if (!GameManager.instance.DayTime)
         {
