@@ -7,7 +7,8 @@ public class Pipe : MonoBehaviour
     private const float TIME_ALIVE = 3;
     private float speed = 0.05f;
     private float time;
-    [SerializeField] private BoxCollider2D pipe;
+    [SerializeField] private BoxCollider2D pipeUp;
+    [SerializeField] private BoxCollider2D pipeDown;
 
     private void OnEnable()
     {
@@ -18,7 +19,8 @@ public class Pipe : MonoBehaviour
     {
         if (GameManager.instance.GameEnd)
         {
-            pipe.enabled = false;   
+            pipeUp.enabled = false;   
+            pipeDown.enabled = false;   
             return;
         }
         transform.position -= new Vector3(speed, 0);

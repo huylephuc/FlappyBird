@@ -1048,6 +1048,7 @@ Transform:
   - {fileID: 334913845}
   - {fileID: 1110501954}
   - {fileID: 975853986}
+  - {fileID: 1010774295}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1219,8 +1220,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 933210327}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1010774296
 MonoBehaviour:
@@ -1639,9 +1640,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird
       objectReference: {fileID: 0}
+    - target: {fileID: 3121498288812017828, guid: 059e4c9dafe609a4297850f60a3c1876, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3121498288812017830, guid: 059e4c9dafe609a4297850f60a3c1876, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3121498288812017830, guid: 059e4c9dafe609a4297850f60a3c1876, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1766,7 +1771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1930799151
 GameObject:

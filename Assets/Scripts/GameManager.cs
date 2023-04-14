@@ -5,6 +5,7 @@ public enum GameState
 {
     StandBy,
     StartGame,
+    PauseGame,
     EndGame
 }
 
@@ -83,6 +84,9 @@ public class GameManager : MonoBehaviour
             case GameState.StartGame:
                 HandleStartGame();
                 break;
+            case GameState.PauseGame:
+                HandlePauseGame();
+                break;
             case GameState.EndGame:
                 HandleEndGame();
                 break;
@@ -104,6 +108,10 @@ public class GameManager : MonoBehaviour
         gameStart = true;
     }
 
+    private void HandlePauseGame()
+    {
+        
+    }
     private void HandleEndGame()
     {
         gameEnd = true;

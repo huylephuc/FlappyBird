@@ -10,11 +10,13 @@ public class Player : Subject
     private float jumpAmount = 4f;
     private float rotZ;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class Player : Subject
     {
         rb.velocity = Vector2.up * jumpAmount;
         if (rb.gravityScale == 0) rb.gravityScale = 1;
+        animator.SetTrigger("CanFly");
     }
 
     void CheckRot()
@@ -55,6 +58,7 @@ public class Player : Subject
 
     private void OnTriggerExit2D(Collider2D collider)
     {
+        if (GameManager.instance.GameEnd) return;
         if (collider.CompareTag("Hitbox"))
         {
             ScoreManager.instance.AddScore();
