@@ -20,7 +20,6 @@ public class Player : Subject
     void Update()
     {
         CheckRot();
-        if (GameManager.instance.MainMenu) return;
         if (GameManager.instance.GameEnd) return;
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {
@@ -54,7 +53,7 @@ public class Player : Subject
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.CompareTag("Hitbox"))
         {

@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
-    [SerializeField] private GameObject pipePrefab;
+    [SerializeField] private GameObject greenPipePrefab;
+    [SerializeField] private GameObject redPipePrefab;
     private List<GameObject> pool;
     private int amountToPool = 5;
 
@@ -15,6 +16,19 @@ public class ObjectPool : MonoBehaviour
     }
 
     void Start()
+    {
+        switch (GameManager.instance.gameTime)
+        {
+            case GameTime.Day:
+                CreatePool(greenPipePrefab);
+                break;
+            case GameTime.Night: 
+                CreatePool(redPipePrefab); 
+                break;
+        }
+    }
+
+    void CreatePool(GameObject pipePrefab)
     {
         pool = new List<GameObject>();
         for (int i = 0; i < amountToPool; i++)

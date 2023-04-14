@@ -1,25 +1,36 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject endScreen;
-    private string sceneName;
-    private void OnEnable()
+    [SerializeField] private RawImage background;
+    [SerializeField] private Texture2D day;
+    [SerializeField] private Texture2D night;
+
+    private void OnEnable() //subscribe event
     {
-        GameManager.OnStateChange += SetMenuOnGameState; //subscribe event
+        GameManager.OnStateChange += SetMenuOnGameState; 
     }
 
-    private void OnDestroy()
+    private void OnDestroy() //unsubscribe event
     {
-        GameManager.OnStateChange -= SetMenuOnGameState; //unsubscribe event
+        GameManager.OnStateChange -= SetMenuOnGameState;
     }
 
     private void Start()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        if (!GameManager.instance.DayTime)
+        {
+            background.texture = day;
+        }
+        else 
+            background.texture = night;
     }
+
     private void SetMenuOnGameState(GameState state)
     {
         startScreen.SetActive(state == GameState.StandBy);
@@ -28,8 +39,13 @@ public class MenuManager : MonoBehaviour
 
     public void Restart()
     {
-        if (sceneName != "Night")
-            SceneManager.LoadScene("Night");
-        else SceneManager.LoadScene("Day");
+        SceneManager.LoadScene("Day");
+        GameManager.instance.UpdateGameState(GameState.StandBy);
+        if (!GameManager.instance.DayTime)
+        {
+            GameManager.instance.ChangeTime(GameTime.Night);
+        }
+        else
+            GameManager.instance.ChangeTime(GameTime.Day);
     }
 }

@@ -3,33 +3,73 @@ using UnityEngine;
 
 public enum GameState
 {
-    MainMenu,
     StandBy,
     StartGame,
     EndGame
 }
+
+public enum GameTime
+{
+    Day,
+    Night
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public GameState state;
+    public GameTime gameTime;
     public static event Action<GameState> OnStateChange; //declare event
+    public static event Action<GameTime> OnTimeChange;
 
-    private bool mainMenu;
     private bool gameStart;
     private bool gameEnd;
-    public bool MainMenu { get => mainMenu; set => mainMenu = value; }
+    private bool dayTime;
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameEnd { get => gameEnd; set => gameEnd = value; }
+    public bool DayTime { get => dayTime; set => dayTime = value; }
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
         Application.targetFrameRate = 60;
     }
 
-    void Start()
+    private void Start()
     {
-        UpdateGameState(GameState.MainMenu);
+        UpdateGameState(GameState.StandBy);
+        ChangeTime(GameTime.Day);
+    }
+
+    public void ChangeTime(GameTime newTime)
+    {
+        gameTime = newTime;
+        switch (newTime)
+        {
+            case GameTime.Day:
+                HandleDayTime();
+                break;
+            case GameTime.Night:
+                HandleNightTime();
+                break;
+        }
+        OnTimeChange?.Invoke(newTime);
+    }
+
+    private void HandleDayTime()
+    {
+        dayTime = false;
+    }
+    private void HandleNightTime()
+    {
+        dayTime = true;
     }
 
     public void UpdateGameState(GameState newState)
@@ -37,9 +77,6 @@ public class GameManager : MonoBehaviour
         state = newState;
         switch (newState)
         {
-            case GameState.MainMenu:
-                HandleMainMenu();
-                break;
             case GameState.StandBy:
                 HandleStandBy();
                 break;
@@ -54,11 +91,6 @@ public class GameManager : MonoBehaviour
         }
 
         OnStateChange?.Invoke(newState);
-    }
-
-    private void HandleMainMenu()
-    {
-        mainMenu = true;
     }
 
     private void HandleStandBy()
