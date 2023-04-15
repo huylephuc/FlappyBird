@@ -3,9 +3,10 @@ using UnityEngine;
 
 public enum GameState
 {
+    MainMenu,
+    Market,
     StandBy,
     StartGame,
-    PauseGame,
     EndGame
 }
 
@@ -15,22 +16,32 @@ public enum GameTime
     Night
 }
 
+public enum Color
+{
+    Yellow,
+    Blue,
+    Red
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public GameState state;
     public GameTime gameTime;
+    public Color color;
     public static event Action<GameState> OnStateChange; //declare event
     public static event Action<GameTime> OnTimeChange;
+    public static event Action<Color> OnUnitChanged;
 
+    private bool isStarted;
     private bool gameStart;
     private bool gameEnd;
     private bool dayTime;
-    private bool paused;
+    
+    public bool IsStarted { get => isStarted; set => isStarted = value; }
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameEnd { get => gameEnd; set => gameEnd = value; }
     public bool DayTime { get => dayTime; set => dayTime = value; }
-    public bool Paused { get => paused; set => paused = value; }
 
     private void Awake()
     {
@@ -43,14 +54,74 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         ChangeTime(GameTime.Day);
+        ChangeColor(Color.Yellow);
         Application.targetFrameRate = 60;
+        
     }
 
     private void Start()
     {
-        UpdateGameState(GameState.StandBy);
+        UpdateGameState(GameState.MainMenu);
     }
 
+    #region Game State
+    public void UpdateGameState(GameState newState)
+    {
+        state = newState;
+        switch (newState)
+        {
+            case GameState.MainMenu:
+                HandleMainMenu();
+                break;
+            case GameState.Market:
+                HandleMarket();
+                break;
+            case GameState.StandBy:
+                HandleStandBy();
+                break;
+            case GameState.StartGame:
+                HandleStartGame();
+                break;
+            case GameState.EndGame:
+                HandleEndGame();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(state), newState, null);
+        }
+
+        OnStateChange?.Invoke(newState);
+    }
+
+
+    private void HandleMainMenu()
+    {
+        isStarted = false;
+        gameStart = false;
+        gameEnd = false;
+    }
+    private void HandleMarket()
+    {
+        isStarted = false;
+    }
+    private void HandleStandBy()
+    {
+        isStarted = true;
+        gameStart = false;
+        gameEnd = false;
+    }
+
+    private void HandleStartGame()
+    {
+        gameStart = true;
+    }
+
+    private void HandleEndGame()
+    {
+        gameEnd = true;
+    }
+    #endregion
+
+    #region Time
     public void ChangeTime(GameTime newTime)
     {
         gameTime = newTime;
@@ -76,48 +147,42 @@ public class GameManager : MonoBehaviour
     {
         dayTime = false;
     }
+    #endregion
 
-    public void UpdateGameState(GameState newState)
+    #region Color
+    public void ChangeColor(Color newColor)
     {
-        state = newState;
-        switch (newState)
+        color = newColor;
+        switch (color)
         {
-            case GameState.StandBy:
-                HandleStandBy();
+            case Color.Yellow:
+                HandleYellow();
                 break;
-            case GameState.StartGame:
-                HandleStartGame();
+            case Color.Blue:
+                HandleBlue();
                 break;
-            case GameState.PauseGame:
-                HandlePauseGame();
-                break;
-            case GameState.EndGame:
-                HandleEndGame();
+            case Color.Red:
+                HandleRed();
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(state), newState, null);
+                throw new ArgumentOutOfRangeException(nameof(newColor), newColor, null);
         }
-
-        OnStateChange?.Invoke(newState);
+        OnUnitChanged?.Invoke(newColor);
     }
 
-    private void HandleStandBy()
+    private void HandleYellow()
     {
-        gameStart = false;
-        gameEnd = false;
+        
     }
 
-    private void HandleStartGame()
+    private void HandleBlue()
     {
-        gameStart = true;
+        
     }
 
-    private void HandlePauseGame()
+    private void HandleRed()
     {
-        paused = true;
+        
     }
-    private void HandleEndGame()
-    {
-        gameEnd = true;
-    }
+    #endregion
 }

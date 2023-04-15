@@ -4,13 +4,18 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip[] audioClips;
 
-    [SerializeField] private AudioSource audioSource;
+    private AudioSource audioSource;
     
     public static AudioManager instance { get; private set; }
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        audioSource = Player.FindObjectOfType<AudioSource>();
     }
 
     public void PlayAudio(int index)

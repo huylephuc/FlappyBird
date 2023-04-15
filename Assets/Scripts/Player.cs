@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : Subject
 {
+    public static Player Instance { get; private set; }
     private const int MAX_ANGLE = 30;
     private const int MIN_ANGLE = -90;
 
@@ -24,7 +22,8 @@ public class Player : Subject
     {
         CheckRot();
         if (GameManager.instance.GameEnd) return;
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
+        if (!GameManager.instance.IsStarted) return;
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.instance.UpdateGameState(GameState.StartGame);
             Jump();
@@ -73,5 +72,10 @@ public class Player : Subject
         GameManager.instance.UpdateGameState(GameState.EndGame);
         GetComponent<Animator>().enabled = false;
         rb.Sleep();
+    }
+
+    public void ChangeColor()
+    {
+        Debug.Log("Changed color");
     }
 }
