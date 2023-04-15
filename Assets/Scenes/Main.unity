@@ -2907,19 +2907,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1407817879}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2078038292}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: ChangeColor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1407817879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3943,17 +3931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rawImage: {fileID: 2036930661}
   x: 0.3
---- !u!114 &2078038292 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3121498288812017848, guid: 059e4c9dafe609a4297850f60a3c1876, type: 3}
-  m_PrefabInstance: {fileID: 194619580}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05fc4b5259f91444903121a7874a6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2081138315
 GameObject:
   m_ObjectHideFlags: 0
