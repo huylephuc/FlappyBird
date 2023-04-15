@@ -26,9 +26,11 @@ public class GameManager : MonoBehaviour
     private bool gameStart;
     private bool gameEnd;
     private bool dayTime;
+    private bool paused;
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameEnd { get => gameEnd; set => gameEnd = value; }
     public bool DayTime { get => dayTime; set => dayTime = value; }
+    public bool Paused { get => paused; set => paused = value; }
 
     private void Awake()
     {
@@ -40,13 +42,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        ChangeTime(GameTime.Day);
         Application.targetFrameRate = 60;
     }
 
     private void Start()
     {
         UpdateGameState(GameState.StandBy);
-        ChangeTime(GameTime.Day);
     }
 
     public void ChangeTime(GameTime newTime)
@@ -60,17 +62,19 @@ public class GameManager : MonoBehaviour
             case GameTime.Night:
                 HandleNightTime();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newTime), newTime, null);
         }
         OnTimeChange?.Invoke(newTime);
     }
 
     private void HandleDayTime()
     {
-        dayTime = false;
+        dayTime = true;
     }
     private void HandleNightTime()
     {
-        dayTime = true;
+        dayTime = false;
     }
 
     public void UpdateGameState(GameState newState)
@@ -110,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePauseGame()
     {
-        
+        paused = true;
     }
     private void HandleEndGame()
     {

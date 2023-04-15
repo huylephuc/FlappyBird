@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Subject
 {
@@ -27,7 +28,6 @@ public class Player : Subject
         {
             GameManager.instance.UpdateGameState(GameState.StartGame);
             Jump();
-            AudioManager.instance.PlayAudio(2);
         }
     }
 
@@ -36,6 +36,7 @@ public class Player : Subject
         rb.velocity = Vector2.up * jumpAmount;
         if (rb.gravityScale == 0) rb.gravityScale = 1;
         animator.SetTrigger("CanFly");
+        AudioManager.instance.PlayAudio(2);
     }
 
     void CheckRot()
