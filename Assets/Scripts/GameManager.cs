@@ -37,11 +37,17 @@ public class GameManager : MonoBehaviour
     private bool gameStart;
     private bool gameEnd;
     private bool dayTime;
+    private bool isYellow;
+    private bool isBlue;
+    private bool isRed;
     
     public bool IsStarted { get => isStarted; set => isStarted = value; }
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameEnd { get => gameEnd; set => gameEnd = value; }
     public bool DayTime { get => dayTime; set => dayTime = value; }
+    public bool IsYellow { get => isYellow; set => isYellow = value; }
+    public bool IsBlue { get => isBlue; set => isBlue = value; }
+    public bool IsRed { get => isRed; set => isRed = value; }
 
     private void Awake()
     {
@@ -172,17 +178,23 @@ public class GameManager : MonoBehaviour
 
     private void HandleYellow()
     {
-        
+        isYellow = true;
+        isBlue = false;
+        isRed = false;
     }
 
     private void HandleBlue()
     {
-        
+        isYellow = false;
+        isBlue = true;
+        isRed = false;
     }
 
     private void HandleRed()
     {
-        
+        isYellow = false;
+        isBlue = false;
+        isRed = true;
     }
     #endregion
 }

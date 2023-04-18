@@ -73,9 +73,4 @@ public class Player : Subject
         GetComponent<Animator>().enabled = false;
         rb.Sleep();
     }
-
-    public void ChangeColor()
-    {
-        Debug.Log("Changed color");
-    }
 }
