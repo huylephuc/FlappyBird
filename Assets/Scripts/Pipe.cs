@@ -17,7 +17,7 @@ public class Pipe : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.GameEnd /*|| !GameManager.instance.IsStarted*/)
+        if (GameManager.instance.GameEnd)
         {
             pipeUp.enabled = false;   
             pipeDown.enabled = false;   
