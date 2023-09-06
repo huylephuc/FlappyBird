@@ -7,6 +7,7 @@ public class SpawnPipe : MonoBehaviour
     [SerializeField] private GameObject pipePrefab;
     private float spawnTime = 0;
     private const float timeBetweenSpawn = 1.75f;
+
     void Update()
     {
         if (!GameManager.instance.GameEnd && GameManager.instance.GameStart)
